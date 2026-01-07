@@ -10,8 +10,10 @@ function BlogList(props) {
     const [isLoading, setIsLoading] = useState(false)
 
     function timeAgo(dateString) {
+
+        const past = new Date(dateString + "Z");
         const now = new Date();
-        const past = new Date(dateString);
+
         const seconds = Math.floor((now - past) / 1000);
 
         const intervals = [
@@ -31,6 +33,7 @@ function BlogList(props) {
 
         return "just now";
     }
+
 
 
     const fetchPostList = async () => {
