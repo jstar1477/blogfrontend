@@ -34,7 +34,7 @@ export const AuthContextProvider = ({ children }) => {
     localStorage.removeItem("user");
     setIsLogin(false);
     setRole(null);
-    window.location.replace("/login"); // Hard redirect
+    window.location.replace("/"); // Hard redirect
   };
 
   return (
