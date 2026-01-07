@@ -245,8 +245,7 @@ body {
   color: #333;
   word-break: break-word;
   overflow-wrap: anywhere;
-
- 
+  font-weight: 700;
   min-width: 0;
 }
 
