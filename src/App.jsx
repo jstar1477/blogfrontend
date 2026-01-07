@@ -19,7 +19,7 @@ import Loading from "./Components/Loading";
 function App() {
 
   const { login, role, isLogin,loading } = useContext(AuthContext);
-  const navigate = useNavigate();
+
 
   if(loading) return <Loading/>
 
