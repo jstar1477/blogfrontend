@@ -21,11 +21,6 @@ function App() {
   const { login, role, isLogin,loading } = useContext(AuthContext);
   const navigate = useNavigate();
 
-useEffect(() => {
-  if (isLogin) {
-    navigate(role === "ADMIN" ? "/admin" : "/author", { replace: true });
-  }
-}, [isLogin, role]);
   if(loading) return <Loading/>
 
   return (

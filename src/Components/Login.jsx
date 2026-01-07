@@ -1,17 +1,17 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { connectToAPI } from '../Pages/apihandler';
 import { AuthContext } from './AuthContext';
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import Loading from './Loading';
 import toast from 'react-hot-toast';
 
 
 function Login() {
-    const{login}=useContext(AuthContext)
+    const{login,isLogin, role}=useContext(AuthContext)
     const [userCred,setUserCred]=useState({email:"",password:""});
     const [formErrors,setFormErrors]=useState({})
     const[isLoading,setIsLoading]=useState(false);
-
+    const navigate=useNavigate()
     const hadleVlues=(e)=>{
         setUserCred({...userCred,[e.target.name]:e.target.value})
     }
@@ -50,6 +50,12 @@ function Login() {
 
         return errors
     }
+
+    useEffect(() => {
+  if (isLogin) {
+    navigate(role === "ADMIN" ? "/admin" : "/author", { replace: true });
+  }
+}, [isLogin, role]);
   return (
     <>
     <div className="formCon">
