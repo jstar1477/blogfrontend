@@ -17,8 +17,8 @@ function Home() {
                         !isLogin ? (
                             <>
                                <div>
-                                <NavLink >Login</NavLink>
-                                <NavLink>Signup</NavLink>
+                                <NavLink to={"/login"}>Login</NavLink>
+                                <NavLink to={"/signup"}>Signup</NavLink>
                                </div>
                             </>
                         ) : (
