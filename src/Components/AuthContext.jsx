@@ -5,9 +5,10 @@ export const AuthContext = createContext(null);
 export const AuthContextProvider = ({ children }) => {
   const [isLogin, setIsLogin] = useState(false);
   const [role, setRole] = useState(null);
-  const [loading, setLoading] = useState(true); // 🔑 KEY FIX
+  const [loading, setLoading] = useState(true); // Important for Vercel hydration
 
   useEffect(() => {
+    // Load auth from localStorage on first render
     const token = localStorage.getItem("token");
     const storedUser = localStorage.getItem("user");
 
@@ -17,7 +18,7 @@ export const AuthContextProvider = ({ children }) => {
       setRole(user.role);
     }
 
-    setLoading(false); // auth check completed
+    setLoading(false); // Auth check finished
   }, []);
 
   const login = (token, user) => {
@@ -31,7 +32,9 @@ export const AuthContextProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    window.location.replace("/login");
+    setIsLogin(false);
+    setRole(null);
+    window.location.replace("/login"); // Hard redirect
   };
 
   return (
