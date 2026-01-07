@@ -42,7 +42,11 @@ function BlogList(props) {
             const response = await connectToAPI("api/public/posts");
             console.log(response)
             if (response.status === 200) {
-                setPosts(response.data);
+                const sortedPosts = [...response.data].sort(
+                    (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
+                );
+
+                setPosts(sortedPosts);
             }
 
         } catch (error) {
