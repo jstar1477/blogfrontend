@@ -12,12 +12,10 @@ function BlogList(props) {
     const fetchPostList=async()=>{
         try {
             setIsLoading(true)
-            const response = await connectToAPI("api/posts/my-posts");
+            const response = await connectToAPI("api/public/posts");
             console.log(response)
-            if(response.status === 200) {
-             let posts=response.data;
-             let approvedPosts = posts.filter((post)=>post.status === "APPROVED")   
-             setPosts(approvedPosts);
+            if(response.status === 200) {  
+             setPosts(response.data);
             }
                 
         } catch (error) {
