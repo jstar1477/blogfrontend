@@ -33,18 +33,12 @@ useEffect(() => {
    <Toaster containerClassName="toast"  position="top-right" toastOptions={{duration:2000}}/>
    <Routes>
     <Route path="/" element={<Home/>}/>
-    {
-      !isLogin ?
+    
       <>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<Register/>}/>
       </>
-      :
-      <>
-      <Route path="/login" element={<Navigate to={role === "ADMIN" ? "/admin" : "/author"}/>}/>
-      <Route path="/signup" element={<Navigate to={role === "ADMIN" ? "/admin" : "/author"}/>}/>
-      </>
-    }
+    
 
     <Route element={<ProtectedRoute isLogin={isLogin} role={role} allowdRole={"ADMIN"}/>}>
     <Route path="/admin" element={<Admin/>}>
